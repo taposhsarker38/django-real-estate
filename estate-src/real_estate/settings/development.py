@@ -9,13 +9,13 @@ DEFAULT_FROM_EMAIL = "info@real_estate.com"
 DOMAIN = env("DOMAIN")
 SITE_NAME = "Real Estate"
 
-DATABASES={
-   'default':{
-      'ENGINE':env("POSTGRES_ENGINE"),
-      'NAME': env("DB_NAME"),
-      'USER': env("DB_USER"),
-      'PASSWORD':env("DB_PASSWORD"),
-      'HOST': env("DB_HOST"),
-      'PORT': env("DB_PORT"),
-   }
+DATABASES = {
+    "default": {
+        "ENGINE": env("POSTGRES_ENGINE"),
+        "NAME": env("POSTGRES_DB"),
+        "USER": env("POSTGRES_USER"),
+        "PASSWORD": env("POSTGRES_PASSWORD"),
+        "HOST": env("PG_HOST"),
+        "PORT": env("PG_PORT"),
+    }
 }

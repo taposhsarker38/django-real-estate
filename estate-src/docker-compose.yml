@@ -17,16 +17,17 @@ services:
       - postgres-db
     networks:
       - estate-react
+
   postgres-db:
-    image: postgres:12.0-alpine
+    image: postgres:14-alpine
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_NAME=${DB_NAME}
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=01713447728
+      - POSTGRES_DB=estate
     networks:
       - estate-react
 
