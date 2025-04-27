@@ -4,6 +4,7 @@ from rest_framework import serializers
 
 from .models import Property, PropertyViews
 
+
 class PropertySerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()
     country = CountryField(name_only=True)
