@@ -1,11 +1,23 @@
 import factory
 from apps.profiles.models import Profile
+from apps.enquiries.models import Enquiry
+from apps.enquiries.serializers import EnquirySerializer
 from django.db.models.signals import post_save
 from faker import Factory as FakerFactory
 from real_estate.settings.base import AUTH_USER_MODEL
 
 faker = FakerFactory.create()
 
+@factory.django.mute_signals(post_save)
+class EnquiryFactory(factory.django.DjangoModelFactory):
+    name = factory.LazyAttribute(lambda x: faker.name())
+    phone_number = factory.LazyAttribute(lambda _: faker.numerify("+8801#########"))
+    email = factory.LazyAttribute(lambda x: faker.email())
+    subject = factory.LazyAttribute(lambda x: faker.sentence(nb_words=5))
+    message = factory.LazyAttribute(lambda x: faker.text(max_nb_chars=100))
+
+    class Meta:
+        model = Enquiry
 
 @factory.django.mute_signals(post_save)
 class ProfileFactory(factory.django.DjangoModelFactory):
