@@ -26,7 +26,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             "email",
             "phone_number",
             "about_me",
-            "lincence",
+            "license",
             "profile_photo",
             "gender",
             "country",
@@ -64,7 +64,7 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
         fields = [
             "phone_number",
             "about_me",
-            "lincence",
+            "license",
             "profile_photo",
             "gender",
             "country",

@@ -1,6 +1,7 @@
 import factory
 from apps.profiles.models import Profile
 from apps.enquiries.models import Enquiry
+from apps.ratings.models import Rating
 from apps.enquiries.serializers import EnquirySerializer
 from django.db.models.signals import post_save
 from faker import Factory as FakerFactory
@@ -47,7 +48,7 @@ class UserFactory(factory.django.DjangoModelFactory):
     first_name = factory.LazyAttribute(lambda x: faker.first_name())
     last_name = factory.LazyAttribute(lambda x: faker.last_name())
     username = factory.LazyAttribute(lambda x: faker.first_name())
-    email = factory.LazyAttribute(lambda x: f"alpha@realestate.com")
+    email = factory.LazyAttribute(lambda x: f"taposh@realestate.com")
     password = factory.LazyAttribute(lambda x: faker.password())
     is_active = True
     is_staff = False
@@ -62,3 +63,14 @@ class UserFactory(factory.django.DjangoModelFactory):
             return manager.create_superuser(*args, **kwargs)
         else:
             return manager.create_user(*args, **kwargs)
+
+@factory.django.mute_signals(post_save)
+class RatingFactory(factory.django.DjangoModelFactory):
+    # Creates a rating instance linking a user as the rater and a profile as the agent.
+    rater = factory.SubFactory(UserFactory)
+    agent = factory.SubFactory(ProfileFactory)
+    rating = factory.LazyAttribute(lambda x: faker.random_int(min=1, max=5))
+    comment = factory.LazyAttribute(lambda x: faker.sentence(nb_words=10))
+
+    class Meta:
+        model = Rating
