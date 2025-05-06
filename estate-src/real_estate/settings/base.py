@@ -32,6 +32,7 @@ DJANGO_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
 ]
 SITE_ID = 1
 THIRD_PARTY_APPS = [
@@ -41,6 +42,7 @@ THIRD_PARTY_APPS = [
     "phonenumber_field",
     "djoser",
     "rest_framework_simplejwt",
+    "djcelery_email",
 ]
 LOCAL_APPS = [
     "apps.common",
